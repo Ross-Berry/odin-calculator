@@ -58,7 +58,7 @@ body {
 
 #zero {
     grid-area: zero;
-    width: 100px;
+    width: 110px;
     border-top-left-radius: 25px; 
     border-top-right-radius: 25px;
     border-bottom-left-radius: 25px;
@@ -124,4 +124,31 @@ body {
 #clear {
     grid-area: clear;
     background-color: #ccc;
+}
+
+@media screen and (max-width: 414px) {
+    body {
+        margin: 0px;
+    }
+    
+    .calculator {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0px;
+    }
+
+    #display {
+        padding: 0px 15px 0px 15px;
+    }
+
+    .btns {
+        /* justify-self: center;
+        align-self: center; */
+        width: 60px;
+        height: 60px;
+    }
+
+    #zero {
+        width: 140px;
+    }
 }
