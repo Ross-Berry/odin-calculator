@@ -18,20 +18,22 @@ function operate(operator, num1, num2) {
   return operator(num1, num2);
 }
 
-function populateDisplay(displayValue) {
+function populate() {
+  const display = document.getElementById("display");
   display.innerText = displayValue;
 }
 
-const display = document.getElementById("display");
-const nums = document.querySelectorAll(".nums");
-let displayValue = 0;
-
-nums.forEach((num) =>
-  num.addEventListener("click", (e) => {
+function inputHandler(e) {
+  if (e.target.classList.contains("nums")) {
     displayValue = e.target.innerText;
-    populateDisplay(displayValue);
-  })
-);
+    populate();
+  }
+}
+
+let displayValue = 0;
+const btns = document.querySelectorAll(".btns");
+
+btns.forEach((btn) => btn.addEventListener("click", inputHandler));
 
 // console.log(add(2, 2));
 // console.log(subtract(5, 2));
