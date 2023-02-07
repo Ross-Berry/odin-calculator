@@ -33,7 +33,7 @@ body {
     display: flex;
     flex-flow: column-reverse wrap;
     align-items: flex-end;
-    height: 150px;
+    min-height: 150px;
     color: white;
     font-size: 5em;
     padding: 0px 5px 0px 5px;
@@ -170,6 +170,8 @@ body {
     }
     
     .calculator {
+        justify-content: center;
+        align-items: center;
         width: 100vw;
         height: 100vh;
         border-radius: 0px;
@@ -180,11 +182,11 @@ body {
     }
 
     .btns {
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
     }
 
     #zero {
-        width: 160px;
+        width: 170px;
     }
 }
