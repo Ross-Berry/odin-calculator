@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="calculator">
-        <div id="display"></div>
+        <div id="display">0</div>
         <button id="zero" class="btns nums">0</button>
         <button id="one" class="btns nums">1</button>
         <button id="two" class="btns nums">2</button>
@@ -21,10 +21,10 @@
         <button id="eight" class="btns nums">8</button>
         <button id="nine" class="btns nums">9</button>
         <button id="equal" class="btns">=</button>
-        <button id="add" class="btns ops">+</button>
-        <button id="subtract" class="btns ops">-</button>
-        <button id="multiply" class="btns ops">X</button>
-        <button id="divide" class="btns ops">/</button>
+        <button id="add" class="btns ops" data-action="add">+</button>
+        <button id="subtract" class="btns ops" data-action="subtract">-</button>
+        <button id="multiply" class="btns ops" data-action="multiply">X</button>
+        <button id="divide" class="btns ops" data-action="divide">/</button>
         <button id="clear" class="btns">AC</button>
     </div>
     <script src="./js/script.js"></script>
