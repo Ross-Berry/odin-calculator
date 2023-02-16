@@ -1,6 +1,6 @@
 # odin-calculator
 Fifth challenge of the Odin Project (Foundations Course), building a JavaScript calculator to practice all that I've learnt so far in regards to JavaScript, HTML, and CSS.
-### Topics
+## Topics
 - Variables
 - Functions
 - Conditionals
