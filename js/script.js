@@ -47,7 +47,6 @@ btns.forEach((btn) =>
 
     if (action == "equal") {
       secondValue = displayedNum;
-
       setDisplay(operate(operator, firstValue, secondValue));
     }
 
