@@ -15,86 +15,66 @@ function divide(num1, num2) {
 }
 
 function operate(operator, num1, num2) {
-  let computation = "";
-  if (isNaN(num1) || isNaN(num2)) return;
-  switch (operator) {
-    case "+":
-      computation = add(Number.parseInt(num1), Number.parseInt(num2));
-      break;
-    case "-":
-      computation = subtract(Number.parseInt(num1), Number.parseInt(num2));
-      break;
-    case "*":
-      computation = multiply(Number.parseInt(num1), Number.parseInt(num2));
-      break;
-    case "/":
-      computation = divide(Number.parseInt(num1), Number.parseInt(num2));
-      break;
-    default:
-      return;
-  }
-  currentOperand = computation;
-  previousOperand = "";
-  operation = "";
+  return operator(parseInt(num1), parseInt(num2));
 }
 
-function selectOperation(operator) {
-  if (currentOperand === "") return;
-  operation = operator;
-  if (previousOperand !== "") {
-    operate(operator, currentOperand, previousOperand);
-  }
-  previousOperand = currentOperand;
-  currentOperand = "";
+function setDisplay(number) {
+  display.textContent = number;
 }
 
-function updateDisplay(number) {
-  currentOperand = currentOperand.toString() + number.toString();
-  if (currentOperand.length > 6) {
-    currentOperand = currentOperand.slice(0, 6);
-  }
-  display.innerText = currentOperand;
-}
+const display = document.querySelector("#display");
+const btns = document.querySelectorAll(".btns");
+let previousBtnType = undefined;
+let firstValue = undefined;
+let secondValue = undefined;
+let operator = undefined;
 
-function clearDisplay() {
-  currentOperand = "";
-  previousOperand = "";
-  operator = "";
-  display.innerText = currentOperand;
-}
+btns.forEach((btn) =>
+  btn.addEventListener("click", (e) => {
+    let btn = e.target;
+    let action = btn.dataset.action;
+    let btnContent = btn.textContent;
+    let displayedNum = display.textContent;
 
-const display = document.getElementById("display");
-const numbers = document.querySelectorAll(".nums");
-const operators = document.querySelectorAll(".ops");
-const equal = document.getElementById("equal");
-const clear = document.getElementById("clear");
-let currentOperand = "";
-let previousOperand = "";
-let operation = "";
+    if (!action) {
+      if (displayedNum == "0" || previousBtnType == "operator") {
+        displayedNum = btnContent;
+      } else {
+        displayedNum += btnContent;
+      }
+      setDisplay(displayedNum);
+    }
 
-numbers.forEach((number) => {
-  number.addEventListener("click", () => {
-    updateDisplay(number.innerText);
-  });
-});
+    if (action == "equal") {
+      secondValue = displayedNum;
 
-operators.forEach((operator) => {
-  operator.addEventListener("click", () => {
-    selectOperation(operator.innerText);
-  });
-});
+      setDisplay(operate(operator, firstValue, secondValue));
+    }
 
-equal.addEventListener("click", () => {
-  operate(operation, currentOperand, previousOperand);
-  updateDisplay(currentOperand);
-});
+    if (action == "add") {
+      previousBtnType = "operator";
+      firstValue = displayedNum;
+      operator = add;
+    } else if (action == "subtract") {
+      previousBtnType = "operator";
+      firstValue = displayedNum;
+      operator = subtract;
+    } else if (action == "multiply") {
+      previousBtnType = "operator";
+      firstValue = displayedNum;
+      operator = multiply;
+    } else if (action == "divide") {
+      previousBtnType = "operator";
+      firstValue = displayedNum;
+      operator = divide;
+    }
 
-clear.addEventListener("click", () => {
-  clearDisplay();
-});
-
-// console.log(add(2, 2));
-// console.log(subtract(5, 2));
-// console.log(multiply(3, 3));
-// console.log(divide(10, 2));
-// console.log(operate(divide, 10, 2));
+    if (action == "clear") {
+      previousBtnType = undefined;
+      firstValue = undefined;
+      secondValue = undefined;
+      operator = undefined;
+      setDisplay("0");
+    }
+  })
+);
